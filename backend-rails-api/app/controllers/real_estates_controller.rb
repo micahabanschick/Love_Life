@@ -1,0 +1,2 @@
+class RealEstatesController < ApplicationController
+end
