@@ -9,6 +9,7 @@ Specs:
 - [ ] The backend and frontend must collaborate to demonstrate Client-Server Communication. 
 - [ ] Your application should have at least 3 AJAX calls, covering at least 2 of Create, Read, Update, and Delete (CRUD). 
 - [ ] Your client-side JavaScript code must use fetch with the appropriate HTTP verb, and your Rails API should use RESTful conventions.
+- [ ] Use preventDefault to control form submit behavior
 
 JavaScript
 - [ ] Use classes and functions to organize your code into reusable pieces.

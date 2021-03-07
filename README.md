@@ -1,7 +1,7 @@
 # LOVE LIFE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Summary
+Love Life is a Single Page Application (SPA) that tracks the users monthly expenses based on their inputs for their selected bill options. Behind the hood, it utilizes a powerful Rails-API-backend in conjunction with a smooth Javascripted frontend asthetic.  
 
 Things you may want to cover:
 
