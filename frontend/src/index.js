@@ -1,6 +1,7 @@
+const BACKEND_URL = 'localhost:3000';
+
 function basicFetch() {
-  const BACKEND_URL = 'localhost:3000';
-  fetch(`${BACKEND_URL}`,{
+  fetch(`${BACKEND_URL}`, {
     method:'POST',
     headers: {
       "Content-Type":"application/json",
