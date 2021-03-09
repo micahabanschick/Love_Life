@@ -51,4 +51,8 @@ class Pie {
         return arr;
     }
 
+    plot() {
+        return Plotly.newPlot('pie-chart', this.newData(), this.layout);
+    }
+
 };

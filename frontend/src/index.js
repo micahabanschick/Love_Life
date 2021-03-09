@@ -30,4 +30,4 @@ let input = {
 
 const basicPie = new Pie(input);
 
-Plotly.newPlot('pie-chart', basicPie.newData(), basicPie.layout);
+basicPie.plot();
