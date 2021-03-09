@@ -2,7 +2,7 @@
 
 ## Monthly Expenses: (https://www.nerdwallet.com/article/finance/budget-checklist-monthly-budget)
 
-### Needs:
+### Necessities:
 1. Mortgage 
 2. Rent
 3. Homeowner's Insurance
@@ -29,7 +29,7 @@
 24. Alimony Payment
 25. Childcare
 
-### Wants:
+### Luxuries:
 1. Clothing, jewelry, etc.
 2. Dining out
 3. Special meals in (steaks for the grill, etc.)
@@ -41,7 +41,7 @@
 9. Self-care and personal grooming
 10. Home Decor
 
-### Credit, Debt, and Savings:
+### Investments:
 1. Emergency fund
 2. Savings account
 3. 401(k)
