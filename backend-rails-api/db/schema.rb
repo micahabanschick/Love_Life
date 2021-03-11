@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_03_07_020122) do
   create_table "expenses", force: :cascade do |t|
     t.string "name"
     t.integer "price"
-    t.string "type"
+    t.string "category"
     t.integer "real_estate_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
