@@ -11,14 +11,8 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.find_or_create_by(name: user_params[:name])
+        user = User.find_or_create_by(name: params[:_name])
         render json: UserSerializer.new(user)
-    end
-
-    private
-
-    def user_params
-        params.require(:user).permit(:name, :password, :monthly_income)
     end
 
 end

@@ -20,6 +20,10 @@ basicPie.plot();
 
 const BACKEND_URL = 'http://localhost:3000';
 
+const guy = new User("guy");
+
+// guy.fetchUser();
+
 const home = new Backend(BACKEND_URL);
 
-home.basicFetch();
+home.basicFetch('post','users', guy);
