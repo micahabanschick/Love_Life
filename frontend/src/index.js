@@ -1,19 +1,4 @@
-const BACKEND_URL = 'localhost:3000';
 
-function basicFetch() {
-  fetch(`${BACKEND_URL}`, {
-    method:'POST',
-    headers: {
-      "Content-Type":"application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify(this)
-  })
-  .then(resp=>resp.json())
-  .then(response => response.json())
-  .then(parsedResponse => console.log(parsedResponse))
-  .catch(error => alert(error.message));
-};
 
 let input = {
   values: [50, 30, 20], // % of slice
@@ -32,3 +17,9 @@ let input = {
 const basicPie = new Pie(input);
 
 basicPie.plot();
+
+const BACKEND_URL = 'http://localhost:3000';
+
+const home = new Backend(BACKEND_URL);
+
+home.basicFetch();

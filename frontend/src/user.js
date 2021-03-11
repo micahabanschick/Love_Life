@@ -19,13 +19,14 @@ class User {
     }
 
     login() {
-        document.getElementById('login-form').addEventListener('submit', function(event){
-            console.log(this.parentElement)
-            let name = document.getElementById('name').value
-            const user = new User(name)
-            user.postUser() //creating or finding user in the backend
-            this.parentElement.innerHTML+=`<label id="logged-in-user">Account: ${name}   </label>`
-            event.preventDefault()
-        })
+      document.getElementById('login-form').addEventListener('submit', function(event){
+          console.log(this.parentElement)
+          let name = document.getElementById('name').value
+          const user = new User(name)
+          user.postUser() //creating or finding user in the backend
+          this.parentElement.innerHTML+=`<label id="logged-in-user">Account: ${name}   </label>`
+          event.preventDefault()
+      })
     }
+    
   };
