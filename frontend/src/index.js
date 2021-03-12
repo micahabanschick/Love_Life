@@ -20,7 +20,7 @@ basicPie.plot();
 
 const BACKEND_URL = 'http://localhost:3000';
 
-const guy = new User("guy");
+const guy = new User("guy", "password", 1200);
 
 // guy.fetchUser();
 

@@ -1,7 +1,33 @@
 class User {
 
-    constructor(name){
+    constructor(name, password, monthlyIncome){
       this._name = name;
+      this._password = password;
+      this._monthlyIncome = monthlyIncome;
+    }
+
+    get name() {
+      return this._name;
+    }
+
+    get password() {
+      return this._password;
+    }
+
+    get monthlyIncome() {
+      return this._monthlyIncome;
+    }
+
+    set name(name) {
+      this._name = name;
+    }
+
+    set password(password) {
+      this._password = password;
+    }
+
+    set monthlyIncome(monthlyIncome) {
+      this._monthlyIncome = monthlyIncome;
     }
 
     login() {
