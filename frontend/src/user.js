@@ -32,23 +32,17 @@ class User {
 
   login() {
     document.getElementById('login-form').addEventListener('submit', function(event){
-        console.log(this.parentElement)
-        let name = document.getElementById('user_name').value
-        let password = document.getElementById('password').value
-        removeLogin();
-        const url = new Backend('http://localhost:3000');
-        const initialUser = new User(name, password);
-        let response = url.basicFetch('post', 'users', initialUser) //creating or finding user in the backend
-        response;
-        if (!response["data"]["attributes"]["monthly_income"]) {
-          inputMonthlyIncome();
-          let monthlyIncome = document.getElementById('monthly_income').value;
-          const fullUser = new User(name, password, monthlyIncome);
-          url.basicFetch('post', 'users', fullUser);
-        };
-        this.parentElement.innerHTML+=`<label id="logged-in-user">Account: ${user.name}</label>`
-        removeLogin();
-        event.preventDefault()
+      console.log(this.parentElement)
+      let name = document.getElementById('user_name').value
+      let password = document.getElementById('password').value
+      let monthlyIncome = document.getElementById('monthly_income').value;
+      const url = new Backend();
+      const user = new User(name, password, monthlyIncome);
+      url.basicFetch('post', 'users', user)
+      this.parentElement.innerHTML+=`<label id="logged-in-user">Account: ${user.name}</label>`
+      removeLogin();
+      displayLogout();
+      event.preventDefault();        
     })
   }
 
@@ -64,15 +58,19 @@ class User {
           <br>
           <input type="password" id="password" name="password" placeholder="Password">
           <br><br>
+          <label for="monthly_income">Monthly Income: </label>
+          <br>
+          <input id="monthly_income" name="monthly_income" placeholder="Monthly Income">
+          <br><br>
           <input type="submit" value="Login">
         </form>
       `
     }
   }
 
-  static inputMonthlyIncome() {
+  static inputMonthlyIncome() { //might need to add a hidden patch tag
     document.getElementById('login-form').innerHTML+=`
-      <form id="login" action="http://localhost:3000/users" method="post">
+      <form id="login" action="http://localhost:3000/users" method="post"> 
         <label for="monthly_income">Monthly Income: </label>
         <br>
         <input id="monthly_income" name="monthly_income">

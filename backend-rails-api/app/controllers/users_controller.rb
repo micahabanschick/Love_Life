@@ -15,4 +15,11 @@ class UsersController < ApplicationController
         render json: UserSerializer.new(user)
     end
 
+    def update
+        user = User.find_or_create_by(name: params[:_name], password: params[:_password])
+        user.monthly_income = params[:_monthly_income]
+        user.save
+        render json: UserSerializer.new(user)
+    end 
+
 end

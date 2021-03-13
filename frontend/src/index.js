@@ -37,12 +37,8 @@ const smallPie = new Pie(input2);
 basicPie.plot('big-chart');
 smallPie.plot('small-chart');
 
-const BACKEND_URL = 'http://localhost:3000';
-
 const guy = new User("guy", "password", 1200);
 
-// guy.fetchUser();
+const home = new Backend();
 
-const home = new Backend(BACKEND_URL);
-
-home.basicFetch('post','users', guy);
+home.basicFetch('post','users', guy, json => console.log(json));
