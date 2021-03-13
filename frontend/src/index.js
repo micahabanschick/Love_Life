@@ -1,3 +1,4 @@
+User.displayLogin();
 let input1 = {
   values: [50, 30, 20], // % of slice
   labels: ['Necessities', 'Luxuries', 'Investments'], // name of slice
