@@ -51,8 +51,11 @@ class Pie {
         return arr;
     }
 
-    plot() {
-        return Plotly.newPlot('pie-chart', this.newData(), this.layout);
+    plot(id) {
+        const div = document.createElement("div");
+        div.setAttribute("id", id);
+        document.body.appendChild(div);
+        return Plotly.newPlot(id, this.newData(), this.layout);
     }
 
 };
