@@ -43,6 +43,7 @@ class Pie {
         let arr = [{
             values: this.values, // % of slice
             labels: this.labels, // name of slice
+            // hoverinfo: 'label+percent+name',
             type: 'pie',
             marker: {
                 colors: this.colors
@@ -52,7 +53,7 @@ class Pie {
     }
 
     plot(id) {
-        const div = document.createElement("div");
+        const div = document.createElement("li");
         div.setAttribute("id", id);
         div.setAttribute("class", "pie-chart");
         document.body.appendChild(div);

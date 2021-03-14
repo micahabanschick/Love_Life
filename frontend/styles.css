@@ -9,7 +9,8 @@ body {
 }
 
 #portfolio ul {
-    width: 20%;
+    width: 50%;
+    overflow: auto;
     /* list-style: none; */
     background-color: brown;
     border: 20px;
@@ -17,12 +18,18 @@ body {
 }
 
 #portfolio li {
+    padding: 5px;
     /* text-align: center; */
 }
 
 .pie-chart {
+    font-weight: bold;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    /* margin-right: auto; */
     width: 20%;
+}
+
+text.gtitle {
+    font-weight: bold;
 }
