@@ -42,6 +42,7 @@ class User {
       this.parentElement.innerHTML+=`<label id="logged-in-user">Account: ${user.name}</label>`
       removeLogin();
       displayLogout();
+      Frontend.renderPortfolio();
       event.preventDefault();        
     })
   }
