@@ -31,14 +31,14 @@ class User {
   }
 
   login() {
-    document.getElementById('login-form').addEventListener('submit', function(event){
+    document.getElementById('login-form').addEventListener('submit', function(event) {
       console.log(this.parentElement)
       let name = document.getElementById('user_name').value
       let password = document.getElementById('password').value
       let monthlyIncome = document.getElementById('monthly_income').value;
       const url = new Backend();
       const user = new User(name, password, monthlyIncome);
-      url.basicFetch('post', 'users', user)
+      url.basicFetch('post', 'users', user);
       this.parentElement.innerHTML+=`<label id="logged-in-user">Account: ${user.name}</label>`
       removeLogin();
       displayLogout();
@@ -80,7 +80,7 @@ class User {
     `
   }
 
-  static removeLogin(){
+  static removeLogin() {
     let element = document.getElementById('login-form');
     element.remove();
   }

@@ -1,4 +1,7 @@
-User.displayLogin();
+document.addEventListener('DOMContentLoaded', function(event) {
+  User.displayLogin();
+});
+
 let input1 = {
   values: [50, 30, 20], // % of slice
   labels: ['Necessities', 'Luxuries', 'Investments'], // name of slice
@@ -8,8 +11,9 @@ let input1 = {
       'rgb(0,0,255)'
   ],
   layout: {
-      height: 400,
-      width: 500
+      height: 300,
+      width: 400,
+      margin: {"t": 0, "b": 0, "l": 20, "r": 0}
   }
 };
 
