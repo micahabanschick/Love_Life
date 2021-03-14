@@ -14,7 +14,7 @@ class Frontend {
     
     static renderPortfolio() {
         let portfolio = document.createElement('div');
-        portfolio.setAttribute('id', 'potfolio');
+        portfolio.setAttribute('id', 'portfolio');
         let listNecessities = document.createElement('ul');
         listNecessities.setAttribute('id', 'necessities');
         let listLuxuries = document.createElement('ul');

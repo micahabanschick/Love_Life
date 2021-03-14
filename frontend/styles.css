@@ -1,8 +1,28 @@
 body {
-	margin: 0;
+	margin: 30px;
 	height: 100%;
     font-family: "Arial";
     background-image: linear-gradient(to bottom right, rgb(97, 0, 97), rgb(107, 0, 0));
     background-attachment: fixed;
     color: White;
+    text-align: center;
+}
+
+#portfolio ul {
+    width: 20%;
+    /* list-style: none; */
+    background-color: brown;
+    border: 20px;
+    border-radius: 5px;
+}
+
+#portfolio li {
+    /* text-align: center; */
+}
+
+.pie-chart {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
 }

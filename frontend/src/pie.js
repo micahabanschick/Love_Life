@@ -54,6 +54,7 @@ class Pie {
     plot(id) {
         const div = document.createElement("div");
         div.setAttribute("id", id);
+        div.setAttribute("class", "pie-chart");
         document.body.appendChild(div);
         return Plotly.newPlot(id, this.newData(), this.layout);
     }

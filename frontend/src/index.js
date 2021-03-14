@@ -30,7 +30,8 @@ let input2 = {
   ],
   layout: {
       height: 200,
-      width: 200
+      width: 200,
+      margin: {"t": 0, "b": 0, "l": 20, "r": 0}
   }
 };
 
