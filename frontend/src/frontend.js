@@ -1,7 +1,7 @@
 class Frontend {
 
     static necessities = [
-        'Mortgage', 'Rent', 'Homeowner\'s Insurance', 'Renter\'s Insurance', 'Auto Insurance', 'Health Insurance', 'Life Insurance', 'Gasoline', 'Electricity', 'Water', 'Garbage', 'Groceries', 'Toiletries and other essentials', 'Car Payment', 'Property Tax', 'Natural Gas', 'Public Transportation', 'Internet', 'Cell Phone', 'Landline', 'Student Loan Payment', 'Other Minimum Loan Payments', 'Child Support', 'Alimony Payment', 'Childcare'
+        'Mortgage/Rent', 'Homeowner\'s Insurance/Renter\'s Insurance', 'Auto Insurance', 'Health Insurance', 'Life Insurance', 'Gasoline', 'Electricity', 'Water', 'Garbage', 'Groceries', 'Toiletries and other essentials', 'Car Payment', 'Property Tax', 'Natural Gas', 'Public Transportation', 'Internet', 'Cell Phone', 'Landline', 'Student Loan Payment', 'Other Minimum Loan Payments', 'Child Support', 'Alimony Payment', 'Childcare'
     ]
 
     static luxuries = [
@@ -12,12 +12,12 @@ class Frontend {
         'Emergency fund', 'Savings account', '401(k)', 'Individual retirement account', 'Other investments', 'Credit card payments (see budget tip below)', 'Extra payments on mortgage', 'Extra payments on student loans'
     ]
     
-    static renderPortfolio() {
+    static renderPortfolio(user) {
         let portfolio = document.createElement('div');
         portfolio.setAttribute('id', 'portfolio');
-
+        let monthlyIncome = user.monthlyIncome;
         let mainInput = {
-            values: [50, 30, 20], // % of slice
+            values: [(monthlyIncome * 0.5), (monthlyIncome * 0.3), (monthlyIncome * 0.2)], // % of slice
             labels: ['Necessities', 'Luxuries', 'Investments'], // name of slice
             colors: [
                 'rgb(255,0,0)',
@@ -25,9 +25,9 @@ class Frontend {
                 'rgb(0,0,255)'
             ],
             layout: {
-                title: 'Necessities, Luxuries, and Investments Goal',
-                height: 300,
-                width: 400,
+                title: 'Goal!',
+                height: 200,
+                width: 200,
                 showlegend: false,
                 margin: {"t": 30, "b": 0, "l": 0, "r": 0}
             }
@@ -45,40 +45,38 @@ class Frontend {
         const expenses = [this.necessities, this.luxuries, this.investments];
         const listExpenses = [listNecessities, listLuxuries, listInvestments];
 
+        document.body.appendChild(main);
         document.body.appendChild(portfolio);
-        portfolio.appendChild(main);
         document.querySelector('text.gtitle').style.fontWeight = 'bold'; // Boldens the pie's title
         portfolio.appendChild(listNecessities);
         portfolio.appendChild(listLuxuries);
         portfolio.appendChild(listInvestments);
-
+        // let backend = new Backend;
+        // backend.basicFetch('get', 'users', [], resp => {
+        //     console.log(resp.data[0].attributes.monthly_income)
+        // });
         for (let i = 0; i < expenses.length; i++) {
             let pieInput = {
-                values: [10, 15, 20, 35, 3, 17], // % of slice
+                values: expenses[i].map(expense => {
+                    let total = mainInput.values[i];
+                    let slice = total/(expenses[i].length);
+                    return slice;
+                }), // % of slice
                 labels: expenses[i], // name of slice
                 automargin: true,
                 colors: expenses[i].map(expense => {
-                    let a = expense.length * 7;
-                    let b = 255 - (expense.length * 5);
+                    let a = expense.length * 8;
+                    let b = 200 - (expense.length * 8);
                     let c = (expenses[i].indexOf(expense) + 6) * 10;
                     return `rgb(${a}, ${b}, ${c})`
                 }),
                 
                 layout: {
-                    title: 'Title',
-                    annotations: [{
-                        font: {
-                            size: 10
-                        },
-                        showarrow: false,
-                        text: 'GHG',
-                        x: 0.17,
-                        y: 0.5
-                    }],
-                    height: 300,
-                    width: 300,
+                    title: `${listExpenses[i].id.toUpperCase()}`,
+                    height: 250,
+                    width: 250,
                     showlegend: false,
-                    margin: {"t": 0, "b": 0, "l": 0, "r": 0}
+                    margin: {"t": 30, "b": 0, "l": 0, "r": 0}
                 }
             };
     

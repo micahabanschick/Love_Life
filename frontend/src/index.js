@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function(event) {
-  User.displayLogin();
+  // User.displayLogin();
 });
 
-const guy = new User("guy", "password", 1200);
+const guy = new User("guy", "password", 10000);
 
 const home = new Backend();
 
-home.basicFetch('post','users', guy, json => console.log(json));
+// home.basicFetch('post','users', guy, json => console.log(json));
 
-Frontend.renderPortfolio();
+Frontend.renderPortfolio(guy);
