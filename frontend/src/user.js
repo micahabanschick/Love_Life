@@ -30,7 +30,7 @@ class User {
     this._monthlyIncome = monthlyIncome;
   }
 
-  login() {
+  static login() {
     document.getElementById('login-form').addEventListener('submit', function(event) {
       console.log(this.parentElement)
       let name = document.getElementById('user_name').value
@@ -40,15 +40,15 @@ class User {
       const user = new User(name, password, monthlyIncome);
       url.basicFetch('post', 'users', user);
       this.parentElement.innerHTML+=`<label id="logged-in-user">Account: ${user.name}</label>`
-      removeLogin();
-      displayLogout();
+      User.removeLogin();
+      User.displayLogout();
       Frontend.renderPortfolio();
       event.preventDefault();        
     })
   }
 
   static displayLogin() {
-    if (!document.getElementById('login-form')){
+    if (!document.getElementById('login-form')) {
       document.getElementById('login').innerHTML+=`
         <form id="login-form" action="http://localhost:3000/users" method="post">
           <label for="user_name">Name: </label>

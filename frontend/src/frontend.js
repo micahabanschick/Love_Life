@@ -11,8 +11,10 @@ class Frontend {
     static investments = [
         'Emergency fund', 'Savings account', '401(k)', 'Individual retirement account', 'Other investments', 'Credit card payments (see budget tip below)', 'Extra payments on mortgage', 'Extra payments on student loans'
     ]
-    
-    static renderPortfolio(user) {
+//
+// ------------------------------ renderPortfolio(user) -START-    
+//
+static renderPortfolio(user) {
         let portfolio = document.createElement('div');
         portfolio.setAttribute('id', 'portfolio');
         let monthlyIncome = user.monthlyIncome;
@@ -86,15 +88,27 @@ class Frontend {
             listExpenses[i].appendChild(p);
             for (let j = 0; j < expenses[i].length; j++) {
                 let listItem = document.createElement('li');
-                listItem.innerHTML = expenses[i][j];
+                let listAnchor = document.createElement('a');
+                listAnchor.innerHTML = expenses[i][j];
                 listExpenses[i].appendChild(listItem);
+                listItem.appendChild(listAnchor);
+                listAnchor.setAttribute('href', '#');
+                listAnchor.setAttribute('class', 'items');
             };
         };
     }
-
+//    
+// -------------------------------- renderPortfolio(user) -END-    
+//
     static removePorfolio() {
         let element = document.getElementById('portfolio');
         element.remove();
+    }
+
+    static selectItem() {
+        document.body.querySelector('div#portfolio li a').addEventListener('click', function(event) {
+            console.log('lol');
+        });
     }
 
 };

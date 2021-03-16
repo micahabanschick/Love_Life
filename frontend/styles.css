@@ -21,10 +21,16 @@ body {
     padding: 20px;
 }
 
-#portfolio li {
+#portfolio li, #portfolio li a {
+    color: white;
     padding: 5px;
     align-self: center;
+    text-decoration: none;
     /* text-align: center; */
+}
+
+#portfolio a:hover {
+    color: blue;
 }
 
 .pie-chart {
