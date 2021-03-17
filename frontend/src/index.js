@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     let name = document.getElementById('user_name').value
     let password = document.getElementById('password').value
     let monthlyIncome = document.getElementById('monthly_income').value;
-    const user = new User(name, password, monthlyIncome);
+    let user = new User(name, password, monthlyIncome);
     const url = new Backend();
     url.basicFetch('post', 'users', user);
     this.parentElement.innerHTML+=`<label id="logged-in-user">Welcome ${user.name}</label><br>`
@@ -24,10 +24,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
     Frontend.renderPortfolio(user); 
     event.preventDefault(); 
 
-    User.return(resp => {
-      let user = new User(resp.name, resp.password, resp.monthlyIncome);
-      console.log(user.name);
-    });     
+    // User.return(resp => {
+    //   let user = new User(resp.name, resp.password, resp.monthlyIncome);
+    //   console.log(user.name);
+    // });     
+    console.log(user.name)
     
     document.querySelector('#logout-button').addEventListener('click', function(event) {
       // mainUrl.basicFetch('post', 'users', {logout: true});
@@ -38,12 +39,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
     
     document.querySelectorAll('.items').forEach(item => {
       item.addEventListener('click', function(event) {
-        console.log('lol');
-      })
+        if(item.style.color === "gold") {
+          item.setAttribute("style", "color: white;");
+        } else {
+          item.setAttribute("style", "color: gold");
+        }
+      });
     });
 
+    console.log(user.name)
+
   });
-  
+        
   document.addEventListener('reload', function(event) {
     event.preventDefault();
   });

@@ -30,7 +30,8 @@ body {
 }
 
 #portfolio a:hover {
-    color: blue;
+    /* color: blue; */
+    background-color: rgb(153,0,0);
 }
 
 .pie-chart {
