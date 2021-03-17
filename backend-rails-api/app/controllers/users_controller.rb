@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
     def index
-        users = User.all
-        render json: UserSerializer.new(users)
+        user = User.all[0]
+        render json: UserSerializer.new(user)
     end
 
     def show
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     end
 
     def create
+        User.destroy_all
         user = User.find_or_create_by(name: params[:_name], password: params[:_password], monthly_income: params[:_monthly_income])
         render json: UserSerializer.new(user)
     end
@@ -21,5 +22,9 @@ class UsersController < ApplicationController
         user.save
         render json: UserSerializer.new(user)
     end 
+
+    def destroy
+        session[:user_id] = nil
+    end
 
 end

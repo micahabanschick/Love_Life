@@ -103,6 +103,10 @@ static renderPortfolio(user) {
     static removePorfolio() {
         let element = document.getElementById('portfolio');
         element.remove();
+        let pie = document.getElementById(`main-chart`);
+        pie.remove();
+        User.displayLogin();
+        // window.location.reload();
     }
 
     static selectItem() {

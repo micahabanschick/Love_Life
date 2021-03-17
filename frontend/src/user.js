@@ -30,26 +30,44 @@ class User {
     this._monthlyIncome = monthlyIncome;
   }
 
+  // static get(data) {
+  //   let user = new User(data.name, data.password, data.monthlyIncome);
+  //   console.log(user.name);
+  // }
+
+  static async return(callback) {
+    let tempUrl = new Backend();
+    const response = await tempUrl.basicFetch('get', 'users', [], resp => {
+      let name = resp.data.attributes.name;
+      let password = resp.data.attributes.password;
+      let monthlyIncome = resp.data.attributes.monthly_income;
+      let user = new User(name, password, monthlyIncome);
+      return user
+    });
+    return callback(response)
+    // console.log(response.name)
+  }
+
   static login() {
     document.getElementById('login-form').addEventListener('submit', function(event) {
       console.log(this.parentElement)
       let name = document.getElementById('user_name').value
       let password = document.getElementById('password').value
       let monthlyIncome = document.getElementById('monthly_income').value;
-      const url = new Backend();
       const user = new User(name, password, monthlyIncome);
+      const url = new Backend();
       url.basicFetch('post', 'users', user);
-      this.parentElement.innerHTML+=`<label id="logged-in-user">Account: ${user.name}</label>`
+      this.parentElement.innerHTML+=`<label id="logged-in-user">Welcome ${user.name}</label><br>`
       User.removeLogin();
       User.displayLogout();
-      Frontend.renderPortfolio();
+      Frontend.renderPortfolio(user);
       event.preventDefault();        
     })
   }
 
   static displayLogin() {
     if (!document.getElementById('login-form')) {
-      document.getElementById('login').innerHTML+=`
+      document.getElementById('login').innerHTML=`
         <form id="login-form" action="http://localhost:3000/users" method="post">
           <label for="user_name">Name: </label>
           <br>
