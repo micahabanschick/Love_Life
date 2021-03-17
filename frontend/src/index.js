@@ -41,8 +41,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
       item.addEventListener('click', function(event) {
         if(item.style.color === "gold") {
           item.setAttribute("style", "color: white;");
+          Expense.removeForm(item);
         } else {
           item.setAttribute("style", "color: gold");
+          Expense.addForm(item);
         }
       });
     });

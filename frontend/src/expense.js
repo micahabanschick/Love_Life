@@ -30,4 +30,24 @@ class Expense {
         this._category = category;
     }
 
+    add(user) {
+        return user.expenses.unshift(this);
+    }
+
+    static addForm(item) {
+        if (!item.querySelector('.expense-form')) {
+            item.innerHTML += `
+                <form class="expense-form" action="http://localhost:3000/users" method="post"> 
+                    <input type="text" class="expense" name="expense" placeholder="Cost">
+                    <input type="submit" value="Save">
+                </form>
+            `
+        }
+    }
+
+    static removeForm(item) {
+        let element = item.querySelector('.expense-form');
+        element.remove();
+    }
+
 };

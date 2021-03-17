@@ -4,6 +4,7 @@ class User {
     this._name = name;
     this._password = password;
     this._monthlyIncome = monthlyIncome;
+    this._expenses = [];
   }
 
   get name() {
@@ -18,6 +19,10 @@ class User {
     return this._monthlyIncome;
   }
 
+  get expenses() {
+    return this._expenses;
+  }
+
   set name(name) {
     this._name = name;
   }
@@ -28,6 +33,10 @@ class User {
 
   set monthlyIncome(monthlyIncome) {
     this._monthlyIncome = monthlyIncome;
+  }
+
+  set expenses(expenses) {
+    this._expenses = expenses;
   }
 
   // static get(data) {
