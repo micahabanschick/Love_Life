@@ -14,7 +14,7 @@ class Frontend {
 //
 // ------------------------------ renderPortfolio(user) -START-    
 //
-static renderPortfolio(user) {
+    static renderPortfolio(user) {
         let portfolio = document.createElement('div');
         portfolio.setAttribute('id', 'portfolio');
         let monthlyIncome = user.monthlyIncome;
@@ -100,6 +100,83 @@ static renderPortfolio(user) {
 //    
 // -------------------------------- renderPortfolio(user) -END-    
 //
+    static reRenderPortfolio(user) {
+        let portfolio = document.getElementById('portfolio');
+        let monthlyIncome = user.monthlyIncome;
+        // let userExpenses = {
+        //     nuser.expenses.filter(expense => );
+        // };
+        let mainInput = {
+            values: [(monthlyIncome * 0.5), (monthlyIncome * 0.3), (monthlyIncome * 0.2)], // % of slice
+            labels: ['Necessities', 'Luxuries', 'Investments'], // name of slice
+            colors: [
+                'rgb(255,0,0)',
+                'rgb(255,255,0)',
+                'rgb(0,0,255)'
+            ],
+            layout: {
+                title: 'Goal!',
+                height: 200,
+                width: 200,
+                showlegend: false,
+                margin: {"t": 30, "b": 0, "l": 0, "r": 0}
+            }
+        };
+        let mainPie = new Pie(mainInput);
+        Pie.removePlot(`main-chart`);
+        mainPie.plot(`main-chart`);
+        let main = document.getElementById(`main-chart`);
+        document.body.insertBefore(main, portfolio);
+
+        let listNecessities = document.getElementById('necessities');
+        let listLuxuries = document.getElementById('luxuries');
+        let listInvestments = document.getElementById('investments');
+        const expenses = [this.necessities, this.luxuries, this.investments];
+        const listExpenses = [listNecessities, listLuxuries, listInvestments];
+
+        document.querySelector('text.gtitle').style.fontWeight = 'bold'; // Boldens the pie's title
+
+        for (let i = 0; i < expenses.length; i++) {
+            let pieInput = {
+                values: expenses[i].map(expense => {
+                    let total = mainInput.values[i];
+                    let slice = total/(expenses[i].length);
+                    return slice;
+                }), // % of slice
+                labels: expenses[i], // name of slice
+                automargin: true,
+                colors: expenses[i].map(expense => {
+                    let a = expense.length * 8;
+                    let b = 200 - (expense.length * 8);
+                    let c = (expenses[i].indexOf(expense) + 6) * 10;
+                    return `rgb(${a}, ${b}, ${c})`
+                }),
+                
+                layout: {
+                    title: `${listExpenses[i].id.toUpperCase()}`,
+                    height: 250,
+                    width: 250,
+                    showlegend: false,
+                    margin: {"t": 30, "b": 0, "l": 0, "r": 0}
+                }
+            };
+    
+            let pie = new Pie(pieInput);
+            pie.plot(`${listExpenses[i].id}-chart`);
+            let p = document.getElementById(`${listExpenses[i].id}-chart`);
+            listExpenses[i].appendChild(p);
+            for (let j = 0; j < expenses[i].length; j++) {
+                let listItem = document.createElement('li');
+                let listAnchor = document.createElement('a');
+                listAnchor.innerHTML = expenses[i][j];
+                listExpenses[i].appendChild(listItem);
+                listItem.appendChild(listAnchor);
+                listAnchor.setAttribute('href', '#');
+                listAnchor.setAttribute('class', 'items');
+            };
+        };
+    }
+
     static removePorfolio() {
         let element = document.getElementById('portfolio');
         element.remove();

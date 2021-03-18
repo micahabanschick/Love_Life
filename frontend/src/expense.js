@@ -4,7 +4,7 @@ class Expense {
         this._category = category;
         this._index = index;
         this._price = price;
-        this._user = {};
+        // this._user = {};
     }
     
     get category() {
@@ -19,9 +19,9 @@ class Expense {
         return this._price;
     }
 
-    get user() {
-        return this._user;
-    }
+    // get user() {
+    //     return this._user;
+    // }
 
     set category(category) {
         this._category = category;
@@ -35,14 +35,14 @@ class Expense {
         this._price = price;
     }
 
-    set user(user) {
-        this._user = user;
-    }
+    // set user(user) {
+    //     this._user = user;
+    // }
 
     add(user) {
-        this.user = user;
+        // this.user = user;
+        user.expenses.unshift(this);
         user.monthlyIncome += this.price;
-        // return user.expenses.unshift(this);
     }
 
     static addForm(item) {

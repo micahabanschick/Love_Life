@@ -60,4 +60,9 @@ class Pie {
         return Plotly.newPlot(id, this.newData(), this.layout);
     }
 
+    static removePlot(id) {
+        let element = document.getElementById(id);
+        element.remove();
+    }
+
 };

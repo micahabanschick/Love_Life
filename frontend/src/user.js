@@ -39,6 +39,13 @@ class User {
     this._expenses = expenses;
   }
 
+  expensesOverview = {
+    necessities: {
+      all: this.expenses.filter(expense => expense.category === "necessities"),
+      total: this.expenses.filter(expense => expense.category === "necessities").map(expense => expense.price).reduce((tot, curr) => tot + curr)
+    }
+  }
+
   // static get(data) {
   //   let user = new User(data.name, data.password, data.monthlyIncome);
   //   console.log(user.name);

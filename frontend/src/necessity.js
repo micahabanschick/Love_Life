@@ -1,7 +1,10 @@
 class Need extends Expense {
 
-    constructor(name, price, category) {
-        super(name, price, category)
+    constructor(category, index, price) {
+        super(category, index, price)
+        // this.expenses = {
+
+        // }
     }
     
 };
