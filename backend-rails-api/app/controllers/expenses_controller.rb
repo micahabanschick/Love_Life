@@ -11,14 +11,9 @@ class ExpensesController < ApplicationController
     end
 
     def create
-        expense = Expense.find_or_create_by(name: expense_params[:name])
+        Expense.destroy_all
+        expense = Expense.find_or_create_by(category: params[:_category], index: params[:_index], price: params[:_price])
         render json: ExpenseSerializer.new(expense)
-    end
-
-    private
-
-    def expense_params
-        params.require(:expense).permit(:name, :price, :type)
     end
 
 end

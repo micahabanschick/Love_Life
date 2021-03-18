@@ -1,6 +1,6 @@
 class User {
 
-  constructor(name, password, monthlyIncome){
+  constructor(name, password, monthlyIncome=3000){
     this._name = name;
     this._password = password;
     this._monthlyIncome = monthlyIncome;

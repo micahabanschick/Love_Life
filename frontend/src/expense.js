@@ -1,44 +1,55 @@
 class Expense {
 
-    constructor(name, price, category) {
-        this._name = name;
-        this._price = price;
+    constructor(category, index, price=0) {
         this._category = category;
+        this._index = index;
+        this._price = price;
+        this._user = {};
+    }
+    
+    get category() {
+        return this._category;
     }
 
-    get name() {
-        return this._name;
+    get index() {
+        return this._index;
     }
 
     get price() {
         return this._price;
     }
 
-    get category() {
-        return this._category;
-    }
-
-    set name(name) {
-        this._name = name;
-    }
-
-    set price(price) {
-        this._price = price;
+    get user() {
+        return this._user;
     }
 
     set category(category) {
         this._category = category;
     }
 
+    set index(index) {
+        this._index = index;
+    }
+
+    set price(price) {
+        this._price = price;
+    }
+
+    set user(user) {
+        this._user = user;
+    }
+
     add(user) {
-        return user.expenses.unshift(this);
+        this.user = user;
+        user.monthlyIncome += this.price;
+        // return user.expenses.unshift(this);
     }
 
     static addForm(item) {
         if (!item.querySelector('.expense-form')) {
             item.innerHTML += `
                 <form class="expense-form" action="http://localhost:3000/users" method="post"> 
-                    <input type="text" class="expense" name="expense" placeholder="Cost">
+                    <input type="text" class="price" index="price" placeholder="Cost">
                     <input type="submit" value="Save">
                 </form>
             `
@@ -47,7 +58,9 @@ class Expense {
 
     static removeForm(item) {
         let element = item.querySelector('.expense-form');
-        element.remove();
+        if (!!element) {
+            element.remove();
+        }
     }
 
 };
