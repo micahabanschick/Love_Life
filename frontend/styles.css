@@ -31,7 +31,7 @@ body {
 
 #portfolio a:hover {
     /* color: blue; */
-    background-color: rgb(153,0,0);
+    background-color: rgb(74, 0, 97);
 }
 
 .pie-chart {
@@ -50,4 +50,16 @@ div#portfolio {
     display: flex;
     width: 100%;
     /* margin: 0 auto; */
+}
+
+div#portfolio #necessities {
+    background-color: brown;
+}
+
+div#portfolio #luxuries {
+    background-color: rgb(161, 161, 4);
+}
+
+div#portfolio #investments {
+    background-color: rgb(4, 4, 145);
 }

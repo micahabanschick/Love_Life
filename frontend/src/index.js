@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         } else {
           item.setAttribute("style", "color: gold");
           Expense.addForm(item);
-
+          // item.querySelector('.expense-form input[type="submit"]').disabled = true;
           item.querySelector('.expense-form').addEventListener('submit', function(event) {
             console.log(this.parentElement);
             let category = item.closest('ul').id;
@@ -58,8 +58,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
             let expense = new Expense(category, index, price);
             expense.add(user);
             Expense.removeForm(item);
-            url.basicFetch('post', 'expenses', expense);
+            // url.basicFetch('post', 'expenses', expense);
             console.log(user.monthlyIncome);
+            console.log(Expense.overview(user).investments.total);
+            Frontend.reRenderPortfolio(user);
+            // item.setAttribute("style", "color: white;");
             event.preventDefault();
           });
         }

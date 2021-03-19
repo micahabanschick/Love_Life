@@ -45,6 +45,23 @@ class Expense {
         user.monthlyIncome += this.price;
     }
 
+    static overview(user) {
+        return {
+          necessities: {
+            all: user.expenses.filter(expense => expense.category === "necessities"),
+            total: user.expenses.filter(expense => expense.category === "necessities").map(expense => expense.price).reduce((tot, curr) => {tot + curr}, 0)
+          },
+          luxuries: {
+            all: user.expenses.filter(expense => expense.category === "luxuries"),
+            total: user.expenses.filter(expense => expense.category === "luxuries").map(expense => expense.price).reduce((tot, curr) => {tot + curr}, 0)
+          },
+          investments: {
+            all: user.expenses.filter(expense => expense.category === "investments"),
+            total: user.expenses.filter(expense => expense.category === "investments").map(expense => expense.price).reduce((tot, curr) => {tot + curr}, 0)
+          }
+        };
+    }
+
     static addForm(item) {
         if (!item.querySelector('.expense-form')) {
             item.innerHTML += `

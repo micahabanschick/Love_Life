@@ -23,6 +23,10 @@ class User {
     return this._expenses;
   }
 
+  // get expensesOverview() {
+  //   return this.expensesOverview;
+  // }
+
   set name(name) {
     this._name = name;
   }
@@ -39,12 +43,26 @@ class User {
     this._expenses = expenses;
   }
 
-  expensesOverview = {
-    necessities: {
-      all: this.expenses.filter(expense => expense.category === "necessities"),
-      total: this.expenses.filter(expense => expense.category === "necessities").map(expense => expense.price).reduce((tot, curr) => tot + curr)
-    }
-  }
+  // set expensesOverview(overview) {
+  //   this.expensesOverview = overview;
+  // }
+
+  // static expensesOverview(user) {
+  //   return {
+  //     necessities: {
+  //       all: this.expenses.filter(expense => expense.category === "necessities"),
+  //       total: this.expenses.filter(expense => expense.category === "necessities").map(expense => expense.price).reduce((tot, curr) => tot + curr)
+  //     },
+  //     luxuries: {
+  //       all: this.expenses.filter(expense => expense.category === "luxuries"),
+  //       total: this.expenses.filter(expense => expense.category === "luxuries").map(expense => expense.price).reduce((tot, curr) => tot + curr)
+  //     },
+  //     investments: {
+  //       all: this.expenses.filter(expense => expense.category === "investments"),
+  //       total: this.expenses.filter(expense => expense.category === "investments").map(expense => expense.price).reduce((tot, curr) => tot + curr)
+  //     }
+  //   };
+  // } 
 
   // static get(data) {
   //   let user = new User(data.name, data.password, data.monthlyIncome);
