@@ -18,25 +18,9 @@ class Frontend {
         let portfolio = document.createElement('div');
         portfolio.setAttribute('id', 'portfolio');
         // let monthlyIncome = user.monthlyIncome;
-        let mainInput = {
-            values: [50, 30, 20], // % of slice
-            labels: ['Necessities', 'Luxuries', 'Investments'], // name of slice
-            colors: [
-                'rgb(255,0,0)',
-                'rgb(255,255,0)',
-                'rgb(0,0,255)'
-            ],
-            layout: {
-                title: 'Goal!',
-                height: 200,
-                width: 200,
-                showlegend: false,
-                margin: {"t": 30, "b": 0, "l": 0, "r": 0}
-            }
-        };
-        let mainPie = new Pie(mainInput);
-        mainPie.plot(`main-chart`);
-        let main = document.getElementById(`main-chart`);
+        let pie = new Pie();
+        pie.plot(`main-chart`);
+        let plot = document.getElementById(`main-chart`);
 
         let listNecessities = document.createElement('ul');
         listNecessities.setAttribute('id', 'necessities');
@@ -47,48 +31,18 @@ class Frontend {
         const expenses = [this.necessities, this.luxuries, this.investments];
         const listExpenses = [listNecessities, listLuxuries, listInvestments];
 
-        document.body.appendChild(main);
+        document.body.appendChild(plot);
         document.body.appendChild(portfolio);
         document.querySelector('text.gtitle').style.fontWeight = 'bold'; // Boldens the pie's title
         portfolio.appendChild(listNecessities);
         portfolio.appendChild(listLuxuries);
         portfolio.appendChild(listInvestments);
-        // let backend = new Backend;
-        // backend.basicFetch('get', 'users', [], resp => {
-        //     console.log(resp.data[0].attributes.monthly_income)
-        // });
+        
         for (let i = 0; i < expenses.length; i++) {
             let listName = document.createElement('h2');
             listName.textContent = listExpenses[i].id.toUpperCase();
             listExpenses[i].appendChild(listName);
-            // let pieInput = {
-            //     values: expenses[i].map(expense => {
-            //         let total = mainInput.values[i];
-            //         let slice = total/(expenses[i].length);
-            //         return slice;
-            //     }), // % of slice
-            //     labels: expenses[i], // name of slice
-            //     automargin: true,
-            //     colors: expenses[i].map(expense => {
-            //         let a = expense.length * 8;
-            //         let b = 200 - (expense.length * 8);
-            //         let c = (expenses[i].indexOf(expense) + 6) * 10;
-            //         return `rgb(${a}, ${b}, ${c})`
-            //     }),
-                
-            //     layout: {
-            //         title: `${listExpenses[i].id.toUpperCase()}`,
-            //         height: 250,
-            //         width: 250,
-            //         showlegend: false,
-            //         margin: {"t": 30, "b": 0, "l": 0, "r": 0}
-            //     }
-            // };
-    
-            // let pie = new Pie(pieInput);
-            // pie.plot(`${listExpenses[i].id}-chart`);
-            // let p = document.getElementById(`${listExpenses[i].id}-chart`);
-            // listExpenses[i].appendChild(p);
+            
             for (let j = 0; j < expenses[i].length; j++) {
                 let listItem = document.createElement('li');
                 let listAnchor = document.createElement('a');
@@ -109,30 +63,13 @@ class Frontend {
         let totalN = Expense.overview(user).necessities.total;
         let totalL = Expense.overview(user).luxuries.total;
         let totalI = Expense.overview(user).investments.total;
-        // let userExpenses = {
-        //     nuser.expenses.filter(expense => );
-        // };
-        let mainInput = {
-            values: [totalN,totalL,totalI], // % of slice
-            labels: ['Necessities', 'Luxuries', 'Investments'], // name of slice
-            colors: [
-                'rgb(255,0,0)',
-                'rgb(255,255,0)',
-                'rgb(0,0,255)'
-            ],
-            layout: {
-                title: 'Goal!',
-                height: 200,
-                width: 200,
-                showlegend: false,
-                margin: {"t": 30, "b": 0, "l": 0, "r": 0}
-            }
-        };
-        Pie.removePlot(`main-chart`);
-        let mainPie = new Pie(mainInput);
-        mainPie.plot(`main-chart`);
-        let main = document.getElementById(`main-chart`);
-        document.body.insertBefore(main, portfolio);
+
+        let pie = new Pie();
+        pie.values = [totalN,totalL,totalI];
+        // pie.plot(`main-chart`);
+        Plotly.react(`main-chart`, pie.newData(), pie.layout);
+        let plot = document.getElementById(`main-chart`);
+        document.body.insertBefore(plot, portfolio);
 
         let listNecessities = document.getElementById('necessities');
         let listLuxuries = document.getElementById('luxuries');
@@ -141,48 +78,6 @@ class Frontend {
         const listExpenses = [listNecessities, listLuxuries, listInvestments];
 
         document.querySelector('text.gtitle').style.fontWeight = 'bold'; // Boldens the pie's title
-
-        for (let i = 0; i < expenses.length; i++) {
-            let pieInput = {
-                values: expenses[i].map(expense => {
-                    let total = mainInput.values[i];
-                    let slice = total/(expenses[i].length);
-                    return slice;
-                }), // % of slice
-                labels: expenses[i], // name of slice
-                automargin: true,
-                colors: expenses[i].map(expense => {
-                    let a = expense.length * 8;
-                    let b = 200 - (expense.length * 8);
-                    let c = (expenses[i].indexOf(expense) + 6) * 10;
-                    return `rgb(${a}, ${b}, ${c})`
-                }),
-                
-                layout: {
-                    title: `${listExpenses[i].id.toUpperCase()}`,
-                    height: 250,
-                    width: 250,
-                    showlegend: false,
-                    margin: {"t": 30, "b": 0, "l": 0, "r": 0}
-                }
-            };
-    
-            let pie = new Pie(pieInput);
-            Pie.removePlot(`${listExpenses[i].id}-chart`);
-            pie.plot(`${listExpenses[i].id}-chart`);
-            let p = document.getElementById(`${listExpenses[i].id}-chart`);
-            listExpenses[i].insertBefore(p, listExpenses[i].firstChild);
-            // listExpenses[i].appendChild(p);
-            // for (let j = 0; j < expenses[i].length; j++) {
-            //     let listItem = document.createElement('li');
-            //     let listAnchor = document.createElement('a');
-            //     listAnchor.innerHTML = expenses[i][j];
-            //     listExpenses[i].appendChild(listItem);
-            //     listItem.appendChild(listAnchor);
-            //     listAnchor.setAttribute('href', '#');
-            //     listAnchor.setAttribute('class', 'items');
-            // };
-        };
     }
 
     static removePorfolio() {

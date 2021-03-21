@@ -1,6 +1,21 @@
 class Pie {
 
-    constructor(data={}) {
+    constructor(data={
+        values: [50, 30, 20], // % of slice
+        labels: ['Necessities', 'Luxuries', 'Investments'], // name of slice
+        colors: [
+            'rgb(255,0,0)',
+            'rgb(255,255,0)',
+            'rgb(0,0,255)'
+        ],
+        layout: {
+            title: 'Goal!',
+            height: 200,
+            width: 200,
+            showlegend: false,
+            margin: {"t": 30, "b": 0, "l": 0, "r": 0}
+        }
+    }) {
         this._values = data.values;
         this._labels = data.labels;
         this._colors = data.colors;
