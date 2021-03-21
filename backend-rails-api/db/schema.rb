@@ -16,17 +16,6 @@ ActiveRecord::Schema.define(version: 2021_03_07_020122) do
     t.string "category"
     t.integer "index"
     t.integer "price"
-    t.integer "real_estate_id"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "real_estates", force: :cascade do |t|
-    t.string "address"
-    t.integer "purchase_price"
-    t.integer "units"
-    t.integer "unit_rent"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
