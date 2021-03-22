@@ -57,19 +57,19 @@ class Frontend {
 //    
 // -------------------------------- renderPortfolio(user) -END-    
 //
-    static reRenderPortfolio(user) {
+    static resize(user) {
         let portfolio = document.getElementById('portfolio');
         // let monthlyIncome = user.monthlyIncome;
-        let totalN = Expense.overview(user).necessities.total;
-        let totalL = Expense.overview(user).luxuries.total;
-        let totalI = Expense.overview(user).investments.total;
+        let totalN = user.totalNecessities;
+        let totalL = user.totalLuxuries;
+        let totalI = user.totalInvestments;
 
         let pie = new Pie();
         pie.values = [totalN,totalL,totalI];
         // pie.plot(`main-chart`);
         Plotly.react(`main-chart`, pie.newData(), pie.layout);
-        let plot = document.getElementById(`main-chart`);
-        document.body.insertBefore(plot, portfolio);
+        // let plot = document.getElementById(`main-chart`);
+        // document.body.insertBefore(plot, portfolio);
 
         let listNecessities = document.getElementById('necessities');
         let listLuxuries = document.getElementById('luxuries');

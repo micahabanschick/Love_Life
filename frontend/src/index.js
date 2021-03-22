@@ -14,13 +14,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
     console.log(this.parentElement)
     let name = document.getElementById('user_name').value
     let password = document.getElementById('password').value
-    let monthlyIncome = parseInt(document.getElementById('monthly_income').value);
-    if(!monthlyIncome) {
-      monthlyIncome = 0;
-    };
-    let user = new User(name, password, monthlyIncome);
+    let user = new User(name, password);
     let url = new Backend();
-    url.basicFetch('post', 'users', user);
+    url.basicFetch('post', 'users', user, resp => {
+      user.id = parseInt(resp.data.id);
+    });
     this.parentElement.innerHTML+=`<label id="logged-in-user">Welcome ${user.name}</label><br>`
     User.removeLogin();
     User.displayLogout();
@@ -57,13 +55,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
             let price = parseInt(item.querySelector('.price').value);
             let expense = new Expense(category, index, price);
             expense.add(user);
-            Expense.removeForm(item);
-            // url.basicFetch('post', 'expenses', expense);
+            url.basicFetch('post', 'expenses', expense);
+            url.basicFetch('get', 'expenses');
+            console.log(user.expenses())
             console.log(user.monthlyIncome);
-            console.log(Expense.overview(user).investments.total);
-            Frontend.reRenderPortfolio(user);
-            // item.setAttribute("style", "color: white;");
+            console.log(user.totalNecessities);
+            console.log(user.totalLuxuries);
+            console.log(user.totalInvestments);
+            Frontend.resize(user);
+            Expense.removeForm(item);
             event.preventDefault();
+            // item.setAttribute("style", "color: white;");
           });
         }
       });

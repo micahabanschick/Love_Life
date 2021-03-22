@@ -1,10 +1,14 @@
 class User {
 
-  constructor(name, password, monthlyIncome=3000){
+  constructor(name, password){
     this._name = name;
     this._password = password;
-    this._monthlyIncome = monthlyIncome;
-    this._expenses = [];
+    this._monthlyIncome = 0;
+    // this._expenses = [];
+    this._id = -1;
+    this.totalNecessities = 0;
+    this.totalLuxuries = 0;
+    this.totalInvestments = 0;
   }
 
   get name() {
@@ -19,8 +23,12 @@ class User {
     return this._monthlyIncome;
   }
 
-  get expenses() {
-    return this._expenses;
+  // get expenses() {
+  //   return this._expenses;
+  // }
+
+  get id() {
+    return this._id;
   }
 
   // get expensesOverview() {
@@ -39,8 +47,58 @@ class User {
     this._monthlyIncome = monthlyIncome;
   }
 
-  set expenses(expenses) {
-    this._expenses = expenses;
+  // set expenses(expenses) {
+  //   this._expenses = expenses;
+  // }
+
+  set id(id) {
+    this._id = id;
+  }
+
+  expenses() {
+    let arr = [];
+    let url = new Backend();
+    url.basicFetch('get', 'expenses', [], resp => {
+      resp.data.forEach(exp => {
+        let userID = exp.relationships.user.data.id;
+        if(userID === this.id.toString()) {
+          arr.unshift(exp)
+        };
+      })
+    });
+    return arr
+  }
+
+  categorizedBy(category="necessities") {
+    let arr = [];
+    let url = new Backend();
+    url.basicFetch('get', 'expenses', [], resp => {
+      resp.data.forEach(exp => {
+        let userID = exp.relationships.user.data.id;
+        if(userID === this.id.toString() && exp.attributes.category === category) {
+          arr.unshift(exp)
+        };
+      })
+    });
+    return arr
+  }
+
+  async sumOfCategory(category="necessities") {
+    let url = new Backend();
+    const response = await url.basicFetch('get', 'expenses', [], resp => {
+      let arr = [];
+      let sum = 0;
+      resp.data.forEach(exp => {
+        let userID = exp.relationships.user.data.id;
+        if(userID === this.id.toString() && exp.attributes.category === category) {
+          let n = exp.attributes.price;
+          // arr.unshift(n)
+          sum += n 
+        };
+      })
+      return arr 
+    });
+    return response;//.reduce((tot, curr) => {tot + curr}, 0);
   }
 
   // set expensesOverview(overview) {
@@ -69,6 +127,11 @@ class User {
   //   console.log(user.name);
   // }
 
+  static reduce(arr) {
+    let n = arr.reduce((tot,curr) => {tot + curr},0);
+    return n
+  }
+
   static async return(callback) {
     let tempUrl = new Backend();
     const response = await tempUrl.basicFetch('get', 'users', [], resp => {
@@ -87,8 +150,8 @@ class User {
       console.log(this.parentElement)
       let name = document.getElementById('user_name').value
       let password = document.getElementById('password').value
-      let monthlyIncome = document.getElementById('monthly_income').value;
-      const user = new User(name, password, monthlyIncome);
+      // let monthlyIncome = document.getElementById('monthly_income').value;
+      const user = new User(name, password);
       const url = new Backend();
       url.basicFetch('post', 'users', user);
       this.parentElement.innerHTML+=`<label id="logged-in-user">Welcome ${user.name}</label><br>`
@@ -110,10 +173,6 @@ class User {
           <label for="password">Password: </label>
           <br>
           <input type="password" id="password" name="password" placeholder="Password">
-          <br><br>
-          <label for="monthly_income">Monthly Income: </label>
-          <br>
-          <input id="monthly_income" name="monthly_income" placeholder="Monthly Income">
           <br><br>
           <input type="submit" value="Login">
         </form>

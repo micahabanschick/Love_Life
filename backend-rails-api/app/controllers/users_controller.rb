@@ -11,8 +11,16 @@ class UsersController < ApplicationController
     end
 
     def create
-        User.destroy_all
-        user = User.find_or_create_by(name: params[:_name], password: params[:_password], monthly_income: params[:_monthly_income])
+        # User.destroy_all
+        user = User.find_or_create_by(name: params["_name"], password: params["_password"])
+        # expenses = params["_expenses"]
+        # if expenses.length > 0
+        #     expense = Expense.find_by(category: params["_expenses"][0]["_category"], index: params["_expenses"][0]["_index"])
+        #     if !!expense 
+        #         expense.delete
+        #     end
+        #     user.expenses.build(category: params["_expenses"][0]["_category"], index: params["_expenses"][0]["_index"], price: params["_expenses"][0]["_price"])
+        # end
         render json: UserSerializer.new(user)
     end
 

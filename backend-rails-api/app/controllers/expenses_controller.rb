@@ -12,7 +12,8 @@ class ExpensesController < ApplicationController
 
     def create
         # Expense.destroy_all
-        expense = Expense.find_or_create_by(category: params[:_category], index: params[:_index], price: params[:_price])
+        expense = Expense.find_or_create_by(category: params["_category"], index: params["_index"], price: params["_price"], user_id: params["_userID"])
+        expense.user.monthly_income += expense.price
         # expense = Expense.find_by_category_and_index(params[:_expenses][0][:_category], params[:_expenses][0][:_index])
         render json: ExpenseSerializer.new(expense)
     end

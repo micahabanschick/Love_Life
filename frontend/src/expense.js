@@ -4,7 +4,7 @@ class Expense {
         this._category = category;
         this._index = index;
         this._price = price;
-        // this._user = {};
+        this._userID = -1;
     }
     
     get category() {
@@ -19,9 +19,9 @@ class Expense {
         return this._price;
     }
 
-    // get user() {
-    //     return this._user;
-    // }
+    get userID() {
+        return this._userID;
+    }
 
     set category(category) {
         this._category = category;
@@ -35,29 +35,36 @@ class Expense {
         this._price = price;
     }
 
-    // set user(user) {
-    //     this._user = user;
-    // }
+    set userID(id) {
+        this._userID = id;
+    }
 
     add(user) {
-        // this.user = user;
-        user.expenses.unshift(this);
+        this.userID = user.id;
+        // user.expenses.unshift(this);
+        if(this.category === "necessities") {
+            user.totalNecessities += this.price
+        } else if(this.category === "luxuries") {
+            user.totalLuxuries += this.price
+        } else if (this.category === "investments") {
+            user.totalInvestments += this.price
+        }
         user.monthlyIncome += this.price;
     }
 
     static overview(user) {
         return {
           necessities: {
-            all: user.expenses.filter(expense => expense.category === "necessities"),
-            total: user.expenses.filter(expense => expense.category === "necessities").map(expense => expense.price).reduce((tot, curr) => {tot + curr}, 0)
+            all: user.categorizedBy(),
+            total: user.sumOfCategory()
           },
           luxuries: {
-            all: user.expenses.filter(expense => expense.category === "luxuries"),
-            total: user.expenses.filter(expense => expense.category === "luxuries").map(expense => expense.price).reduce((tot, curr) => {tot + curr}, 0)
+            all: user.expenses().filter(expense => expense.category === "luxuries"),
+            total: user.expenses().filter(expense => expense.category === "luxuries").map(expense => expense.price).reduce((tot, curr) => {tot + curr}, 0)
           },
           investments: {
-            all: user.expenses.filter(expense => expense.category === "investments"),
-            total: user.expenses.filter(expense => expense.category === "investments").map(expense => expense.price).reduce((tot, curr) => {tot + curr}, 0)
+            all: user.expenses().filter(expense => expense.category === "investments"),
+            total: user.expenses().filter(expense => expense.category === "investments").map(expense => expense.price).reduce((tot, curr) => {tot + curr}, 0)
           }
         };
     }
