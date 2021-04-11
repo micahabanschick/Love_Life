@@ -1,21 +1,44 @@
-class ExpensesController < ApplicationController
+class Api::v2::ExpensesController < ApplicationController
+    
+    before_action :set_user
 
     def index
-        expenses = Expense.all
-        render json: ExpenseSerializer.new(expenses)
+        @expenses = User.find_by(id: params[:user_id]).expenses
+        render json: ExpenseSerializer.new(@expenses)
     end
 
     def show
-        expense = Expense.find(params[:id])
-        render json: ExpenseSerializer.new(expense)
+        @expense = Expense.find_by(params[:id])
+        render json: ExpenseSerializer.new(@expense)
     end
 
     def create
-        # Expense.destroy_all
-        expense = Expense.find_or_create_by(category: params["_category"], index: params["_index"], price: params["_price"], user_id: params["_userID"])
-        expense.user.monthly_income += expense.price
-        # expense = Expense.find_by_category_and_index(params[:_expenses][0][:_category], params[:_expenses][0][:_index])
-        render json: ExpenseSerializer.new(expense)
+        @expense = @user.expenses.build(expense_params)
+        @expense.save 
+        render json: expenseSerializer.new(@expense)
+    end
+
+    def update
+        @expense = Expense.find(params[:id])
+        @expense.update(expense_params)
+        @expense.save
+        render json: UserSerializer.new(@expense)
+    end
+
+    def destroy
+        @expense = Expense.find(params[:id])
+        @expense.destroy
+        render json: UserSerializer.new(@expense)
+    end
+
+    private
+
+    def set_user
+        @user = User.find_by(params[:user_id])
+    end
+
+    def expense_params
+        params.require(:expense).permit(:category, :index, :price, :user_id)
     end
 
 end

@@ -1,4 +1,4 @@
-class RealEstatesController < ApplicationController
+class Api::v2::RealEstatesController < ApplicationController
 
     def index
         real_estates = RealEstate.all
