@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(event) {
   
+  let body = document.querySelector('body'); 
+  body.style.backgroundColor = "red";
   let mainUrl = new Backend();
   mainUrl.basicFetch('get', 'users');
   User.displayLogin();
@@ -8,6 +10,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
   
   // Frontend.renderPortfolio(guy);
   
+  document.querySelector('#dark-mode').addEventListener('click', event => {
+    body = document.querySelector('body'); 
+    // background-image: linear-gradient(to bottom right, rgb(97, 0, 97), rgb(107, 0, 0));
+    if (body.style.backgroundColor === "red") {
+      body.style.backgroundColor = "blue";
+      console.log(body.style.backgroundColor)
+    } else if (body.style.backgroundColor === "blue") {
+      body.style.backgroundColor = "red";
+      console.log(body.style.backgroundColor)
+    }
+  })
   
   document.getElementById('login-form').addEventListener('submit', function(event) {
     
@@ -30,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //   console.log(user.name);
     // });     
     console.log(user.name)
+
     
     document.querySelector('#logout-button').addEventListener('click', function(event) {
       // mainUrl.basicFetch('post', 'users', {logout: true});
