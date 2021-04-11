@@ -1,0 +1,66 @@
+body {
+	margin: 30px;
+	height: 100%;
+    font-family: "Arial";
+    /* background-image: linear-gradient(to bottom right, rgb(97, 0, 97), rgb(107, 0, 0)); */
+    background-color: "red";
+    /* background-attachment: fixed; */
+    color: White;
+    text-align: center;
+}
+
+#portfolio ul {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    /* overflow: auto; */
+    list-style: none;
+    background-color: brown;
+    border: 20px;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 20px;
+}
+
+#portfolio li, #portfolio li a {
+    color: white;
+    padding: 5px;
+    align-self: center;
+    text-decoration: none;
+    /* text-align: center; */
+}
+
+#portfolio a:hover {
+    /* color: blue; */
+    background-color: rgb(74, 0, 97);
+}
+
+.pie-chart {
+    font-weight: bold;
+    display: block;
+    margin: 0 auto;
+    /* margin-right: auto; */
+    width: 20%;
+}
+
+text.gtitle {
+    font-weight: bold;
+}
+
+div#portfolio {
+    display: flex;
+    width: 100%;
+    /* margin: 0 auto; */
+}
+
+div#portfolio #necessities {
+    background-color: brown;
+}
+
+div#portfolio #luxuries {
+    background-color: rgb(161, 161, 4);
+}
+
+div#portfolio #investments {
+    background-color: rgb(4, 4, 145);
+}
