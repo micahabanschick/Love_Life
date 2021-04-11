@@ -5,13 +5,14 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import {BrowserRouter as Router} from 'react-router-dom'
 import './index.css';
+import usersReducer from './reducers/usersReducer'
 import App from './App';
 // import { store } from './store';
 // import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
 const rootReducer = combineReducers({
-  // user: usersReducer,
+  user: usersReducer,
   // project: projectsReducer,
   // work: worksReducer,
 })
