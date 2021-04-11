@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UsersContainer from './containers/UsersContainer'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Inside App</h1>
+        <UsersContainer/>
+        <h1>Outside and After UsersContainer</h1>
+        <br/><br/>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Counter />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>

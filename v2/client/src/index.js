@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import {BrowserRouter as Router} from 'react-router-dom'
 import './index.css';
+import {reducer as burgerMenu} from 'redux-burger-menu';
 import usersReducer from './reducers/usersReducer'
 import App from './App';
 // import { store } from './store';
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   user: usersReducer,
   // project: projectsReducer,
   // work: worksReducer,
+  burgerMenu
 })
 
 const store = createStore(

@@ -1,9 +1,9 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 // import Users from './users/Users'
-import User from './users/User'
-import About from '../pages/Welcome'
-import Home from '../pages/Home'
+import User from '../users/User'
+import About from '../../pages/Welcome'
+import Home from '../../pages/Home'
 // import ProjectsContainer from '../containers/ProjectsContainer'
 // import WorksContainer from '../containers/WorksContainer'
 
@@ -23,8 +23,6 @@ const MyRoutes = (props) => {
         render={(routerProps) => 
           <Home {...routerProps} 
             user={props.user} 
-            project={props.project} 
-            work={props.work}
           />
         }
       />
